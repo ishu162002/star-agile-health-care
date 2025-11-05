@@ -27,11 +27,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo 'Building Docker image...'
-                sh '/usr/bin/docker build -t ishupurwar/healthcare:latest .'
-            }
+               dir("${WORKSPACE}") { 
+               sh 'docker build -t ishupurwar/healthcare:latest .'
         }
-
+    }
+}
         stage('Authenticate GCP and Push Docker Image') {
             steps {
                 withCredentials([file(credentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
