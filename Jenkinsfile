@@ -2,6 +2,7 @@ pipeline {
     agent any
     
     environment {
+        PATH = "/usr/local/bin:/usr/bin:/bin:${env.PATH}"
         PROJECT_ID = 'arched-proton-477313-g2'   // <-- replace with your actual GCP project ID
         IMAGE_NAME = 'healthcare'
         IMAGE_TAG = 'v1.0'
@@ -27,9 +28,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh '''
-                    'docker build -t ishupurwar/healthcare:latest .'
-                '''
+                sh '/usr/bin/docker build -t ishupurwar/healthcare:latest .'
             }
         }
 
