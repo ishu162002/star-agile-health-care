@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh '''
-                    docker build -t gcr.io/$PROJECT_ID/$IMAGE_NAME:$IMAGE_TAG .
+                    'docker build -t ishupurwar/healthcare:latest .'
                 '''
             }
         }
@@ -43,7 +43,7 @@ pipeline {
 
                         echo "Pushing image to Google Container Registry..."
                         gcloud auth configure-docker gcr.io --quiet
-                        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$IMAGE_TAG
+                       docker push ishupurwar/healthcare:latest
                     '''
                 }
             }
